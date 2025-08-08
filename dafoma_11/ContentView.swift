@@ -394,9 +394,6 @@ struct ProfileView: View {
                         // Stats overview
                         statsOverview
                         
-                        // Settings sections
-                        settingsSection
-                        
                         // About section
                         aboutSection
                         
@@ -472,49 +469,6 @@ struct ProfileView: View {
         }
     }
     
-    private var settingsSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Settings")
-                .font(.headline)
-                .foregroundColor(Color.white)
-            
-            VStack(spacing: 0) {
-                SettingsRow(
-                    title: "Dietary Preferences",
-                    icon: "leaf.fill",
-                    color: .primaryGreen
-                ) {
-                    // Navigate to dietary preferences
-                }
-                
-                SettingsRow(
-                    title: "Fitness Goals",
-                    icon: "target",
-                    color: .primaryYellow
-                ) {
-                    // Navigate to fitness goals
-                }
-                
-                SettingsRow(
-                    title: "Notifications",
-                    icon: "bell.fill",
-                    color: Color(hex: "007aff")
-                ) {
-                    // Navigate to notifications
-                }
-                
-                SettingsRow(
-                    title: "Privacy & Data",
-                    icon: "shield.fill",
-                    color: .flexibilityColor
-                ) {
-                    // Navigate to privacy settings
-                }
-            }
-            .nutriTrackCard()
-        }
-    }
-    
     private var aboutSection: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("About")
@@ -523,19 +477,15 @@ struct ProfileView: View {
             
             VStack(spacing: 0) {
                 SettingsRow(
-                    title: "Help & Support",
+                    title: "Data Source",
                     icon: "questionmark.circle.fill",
                     color: Color(hex: "007aff")
                 ) {
                     // Open help
-                }
-                
-                SettingsRow(
-                    title: "Rate App",
-                    icon: "star.fill",
-                    color: Color.primaryYellow
-                ) {
-                    // Open App Store rating
+                    
+                    guard let url = URL(string: "https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight") else { return }
+                    
+                    UIApplication.shared.open(url)
                 }
                 
                 SettingsRow(
